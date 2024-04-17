@@ -1,0 +1,43 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 10px;
+}
+
+.flight-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flight-card {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 90%;
+    margin: 20px;
+    padding: 20px;
+}
+
+.segment {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+.segment:last-child {
+    border-bottom: none;
+}
+
+.segment p {
+    margin: 5px;
+    flex: 1;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}

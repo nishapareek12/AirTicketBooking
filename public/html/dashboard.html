@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Flight Booking App</div>
+        <div class="welcome-message">Welcome to Dashboard</div>
+    </header>
+    <main>
+        <form class="search-container" action="/searchFlight" method="post">
+            <input type="text" placeholder="Enter Departure City" name="from">
+            <input type="text" placeholder="Enter Destination City" name="to">
+            <input type="date" placeholder="Departure Date" name="departure_date">
+            <input type="date" placeholder="Return Date" name="return_date">
+            <input type="number" placeholder="Passengers" name="passengers">
+            <button type= "submit" class="search-btn">Search</button>
+        </form>
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="social-media">
+            <!-- Social media icons -->
+        </div>
+        <div class="copyright">&copy; 2024 Flight Booking App</div>
+    </footer>
+    <script>
+        
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Fetch the form data
+            const formData = new FormData(this);
+
+            // Convert form data to JSON object
+            const searchParams = {};
+            formData.forEach((value, key) => {
+                searchParams[key] = value;
+            });
+
+            // Send a POST request to the server
+            fetch("/searchFlight", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(searchParams)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response and update the search results section
+                console.log(data); // Log the response for debugging
+                // Update the search results section here
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+        
+    </script>
+</body>
+</html>

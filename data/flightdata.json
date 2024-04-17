@@ -1,0 +1,162 @@
+[
+    {
+        "flight_number": "ABC123",
+        "departure_date": "20-04-2024",
+        "departure_time": "08:00 AM",
+        "arrival_date": "20-04-2024",
+        "arrival_time": "10:30 AM",
+        "from": "New York",
+        "to": "Los Angeles",
+        "price": 350.00
+    },
+    {
+        "flight_number": "DEF456",
+        "departure_date": "21-04-2024",
+        "departure_time": "09:00 AM",
+        "arrival_date": "21-04-2024",
+        "arrival_time": "11:30 AM",
+        "from": "Los Angeles",
+        "to": "Chicago",
+        "price": 280.00
+    },
+    {
+        "flight_number": "GHI789",
+        "departure_date": "22-04-2024",
+        "departure_time": "10:00 AM",
+        "arrival_date": "22-04-2024",
+        "arrival_time": "01:30 PM",
+        "from": "Chicago",
+        "to": "Miami",
+        "price": 410.00
+    },
+    {
+        "flight_number": "JKL012",
+        "departure_date": "23-04-2024",
+        "departure_time": "11:00 AM",
+        "arrival_date": "23-04-2024",
+        "arrival_time": "02:30 PM",
+        "from": "Miami",
+        "to": "Dallas",
+        "price": 320.00
+    },
+    {
+        "flight_number": "MNO345",
+        "departure_date": "24-04-2024",
+        "departure_time": "12:00 PM",
+        "arrival_date": "24-04-2024",
+        "arrival_time": "03:30 PM",
+        "from": "Dallas",
+        "to": "Seattle",
+        "price": 380.00
+    },
+    {
+        "flight_number": "PQR678",
+        "departure_date": "25-04-2024",
+        "departure_time": "01:00 PM",
+        "arrival_date": "25-04-2024",
+        "arrival_time": "04:30 PM",
+        "from": "Seattle",
+        "to": "San Francisco",
+        "price": 290.00
+    },
+    {
+        "flight_number": "STU901",
+        "departure_date": "26-04-2024",
+        "departure_time": "02:00 PM",
+        "arrival_date": "26-04-2024",
+        "arrival_time": "06:30 PM",
+        "from": "San Francisco",
+        "to": "Mumbai",
+        "price": 650.00
+    },
+    {
+        "flight_number": "VWX234",
+        "departure_date": "27-04-2024",
+        "departure_time": "03:00 PM",
+        "arrival_date": "27-04-2024",
+        "arrival_time": "07:30 PM",
+        "from": "Mumbai",
+        "to": "Delhi",
+        "price": 200.00
+    },
+    {
+        "flight_number": "YZA567",
+        "departure_date": "28-04-2024",
+        "departure_time": "04:00 PM",
+        "arrival_date": "28-04-2024",
+        "arrival_time": "08:30 PM",
+        "from": "Delhi",
+        "to": "Kolkata",
+        "price": 180.00
+    },
+    {
+        "flight_number": "BCD890",
+        "departure_date": "29-04-2024",
+        "departure_time": "05:00 PM",
+        "arrival_date": "29-04-2024",
+        "arrival_time": "09:30 PM",
+        "from": "Kolkata",
+        "to": "Chennai",
+        "price": 220.00
+    },
+    {
+        "flight_number": "EFG123",
+        "departure_date": "30-04-2024",
+        "departure_time": "06:00 PM",
+        "arrival_date": "30-04-2024",
+        "arrival_time": "10:30 PM",
+        "from": "Chennai",
+        "to": "Paris",
+        "price": 480.00
+    },
+    {
+        "flight_number": "HIJ456",
+        "departure_date": "01-05-2024",
+        "departure_time": "07:00 PM",
+        "arrival_date": "01-05-2024",
+        "arrival_time": "11:30 PM",
+        "from": "Paris",
+        "to": "Tokyo",
+        "price": 700.00
+    },
+    {
+        "flight_number": "KLM789",
+        "departure_date": "02-05-2024",
+        "departure_time": "08:00 PM",
+        "arrival_date": "02-05-2024",
+        "arrival_time": "01:30 AM",
+        "from": "Tokyo",
+        "to": "Dhaka",
+        "price": 550.00
+    },
+    {
+        "flight_number": "NOP012",
+        "departure_date": "03-05-2024",
+        "departure_time": "09:00 PM",
+        "arrival_date": "03-05-2024",
+        "arrival_time": "02:30 AM",
+        "from": "Dhaka",
+        "to": "Istanbul",
+        "price": 480.00
+    },
+    {
+        "flight_number": "QRS345",
+        "departure_date": "04-05-2024",
+        "departure_time": "10:00 PM",
+        "arrival_date": "04-05-2024",
+        "arrival_time": "03:30 AM",
+        "from": "Istanbul",
+        "to": "Rome",
+        "price": 320.00
+    },
+    {
+        "flight_number": "TUV678",
+        "departure_date": "05-05-2024",
+        "departure_time": "11:00 PM",
+        "arrival_date": "05-05-2024",
+        "arrival_time": "04:30 AM",
+        "from": "Rome",
+        "to": "London",
+        "price": 250.00
+    }
+]

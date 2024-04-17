@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/index.css">
+    <title>flightbooking app</title>
+</head>
+<body>
+    <div class="button-container">
+        <button id="loginBtn">Login</button>
+        <button id="signinBtn">Sign In</button>
+    </div>
+    <form action="/searchFlight" method="post">
+    <input type="text" class=".searchName" id="fromInput" name="from" placeholder="FROM"/>
+    <input type="text" class=".searchName" id="toInput" name="to" placeholder="TO"/>
+    <input type="date"  placeholder="Departure Date" name="departure_date">
+    <button type="submit" id="searchBtn">Search</button>
+     </form>
+    <script>
+        // JavaScript for handling the login button click event
+        document.getElementById("loginBtn").addEventListener("click", function() {
+            window.location.href = "/html/login.html"; // Redirect to the login page
+        });
+
+        //javascript for handling signIn button click event
+        document.getElementById("signinBtn").addEventListener("click", function(){
+            window.location.href = "/html/signin.html";
+        })
+
+       
+    </script>
+</body>
+</html>
