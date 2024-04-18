@@ -3,7 +3,8 @@ const asyncHandler = require("express-async-handler")
 const flightModel = require("../models/flightModel")
 const moment = require('moment');
 const IATAcode = require("../API/city_tocode")
-
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv").config()
 // const path = require("path")
 // const fs = require("fs")
 const searchFlight = asyncHandler(async (req,res) => {
@@ -54,19 +55,34 @@ const searchFlight = asyncHandler(async (req,res) => {
     }   
       Object.assign(flightObject, { flight : segmentsArray});
       results.push(flightObject)
-       }       // console.log(results)
-        // const fil_res = results.filter(flight => flight.from == from && flight.to == to)
-        // console.log("filtered: ", fil_res)
-        // const searchResults = results.filter( flight => flight.from == fromCode && flight.to == toCode && moment(flight.departure_date, "DD-MM-YYYY").isSame(departure_date, 'day'))
-        if (results.length === 0) {
-            res.json({ message: "No flights available for the given criteria" });
-        } else {
-         
-            // const flightHTML = generateFlightHTML(results);
-            // res.send(flightHTML)
-                res.send(results);
-        
+       }      
+       
+    // if (results.length === 0) {
+    //     res.render('searchResults', { results: []});
+    // } else {
+    //     res.render('searchResults', { results });
+    // }
+
+    // if (results.length === 0) {
+    //     res.render("searchResults", { results: [], isLoggedIn: !!req.cookies.token });
+    // } else {
+    //     res.render("searchResults", { results, isLoggedIn: !!req.cookies.token });
+    // }
+    const token = req.cookies.token;
+    let isLoggedIn = false;
+    
+    if (token) {
+        try {
+            const decoded = jwt.verify(token, process.env.SECRET_KEY);
+            isLoggedIn = true;
+            // console.log(decoded); // Log decoded user information
+        } catch (err) {
+            console.log(err);
+        }
     }
+    // const isLoggedIn = req.cookies.token ? jwt.verify(req.cookies.token, process.env.SECRET_KEY) : false;
+        console.log(isLoggedIn)
+        res.render("searchResults", { results, isLoggedIn });
      }catch(err){
         console.log(err)
      }
@@ -74,28 +90,6 @@ const searchFlight = asyncHandler(async (req,res) => {
     }
    
 })
-
-// function generateFlightHTML(flights) {
-//     let html = `<html><head><title>Search Results</title><link rel='stylesheet' href="/css/style.css"></head><body><div class='search-results'>`;
-//     flights.forEach(flight => {
-//         html += `
-//             <div class='flight-info'>
-//                 <p><strong>Flight Number:</strong> ${flight.flight_number}</p>
-//                 <p><strong>Departure:</strong> ${flight.from}</p>
-//                 <p><strong>Departure Date:</strong> ${flight.departure_date}</p>
-//                 <p><strong>Departure Time:</strong> ${flight.departure_time}</p>
-//                 <p><strong>Arrival:</strong> ${flight.to}</p>
-//                 <p><strong>Arrival Date:</strong> ${flight.arrival_date}</p>
-//                 <p><strong>Arrival Time:</strong> ${flight.arrival_time}</p>
-//                 <p><strong>Price:</strong> $${flight.price}</p>
-//                 <button class='book-now-btn'>Book Now</button>
-//             </div>
-//         `;
-//     });
-//     html += "</div></body></html>";
-//     return html;
-// }
-
 
 
 module.exports = searchFlight

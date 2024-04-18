@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.flight-card {
+    background: white;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.flight-card h2 {
+    color: #333;
+    font-size: 24px;
+}
+
+.segments {
+    display: flex;
+    justify-content: space-between;
+}
+
+.segment {
+    background: #eef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    flex-grow: 1;
+    flex-basis: calc(50% - 10px); /* Adjust based on the number of segments expected */
+}
+
+.segment:last-child {
+    margin-right: 0;
+}
+
+.segment p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.segment p strong {
+    color: #333;
+}

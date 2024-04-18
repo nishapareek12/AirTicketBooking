@@ -8,13 +8,19 @@ const dotenv = require("dotenv").config() //necessary to access environment vari
 const app = express()
 app.use(cookieParser());
 const connectDb = require("./config/dbConnect")
-const {registerUser, loginUser} = require("./controller/userController");
+const {registerUser, loginUser, logoutUser} = require("./controller/userController");
 const validateToken = require("./middleware/validateToken");
 //as data is retrieved using html, we use urlencoded insted of express.json()
 connectDb()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.set('view engine', 'ejs');
 app.use(express.static("./public"))
+// app.use(express.static('public'));
+// app.use('*.css', (req, res, next) => {
+//     res.setHeader('Content-Type', 'text/css');
+//     next();
+//   });
 const dashPath = path.join(__dirname, '.', 'public', 'html','dashboard.html');
 const indexPath = path.join(__dirname, '.', 'public','html','index.html')
 app.get("/", (req,res) => {
@@ -28,7 +34,13 @@ app.post("/searchFlight", searchFlight )
 // app.post("/formData", searchFlight)
 app.get("/dashboard", validateToken, (req,res) => {
     res.sendFile(dashPath)
+    // res.render("dashPath", { loggedIn: true })
 })
+
+app.get("/logout", (req, res) => {
+    res.clearCookie("token"); // Clear the token cookie
+    res.redirect("/"); // Redirect to the homepage or login page
+});
 // app.get("/fetchdata", fetchData)
 app.listen(8000, () => {
     console.log("app is listening to port 8000")
