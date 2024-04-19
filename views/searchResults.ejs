@@ -59,13 +59,17 @@
           <% }); %>
         </div>
         <% if (isLoggedIn === true) { %>
-            <button class="book-now-button">Book Now</button>
+            <button id="book-now" class="book-now-button">Book Now</button>
           <% } %>
       </div>
     <% }); %>
   <% } %>
+  
   <form action="/logout" method="post">
     <button type="submit" class="logout-button" >LogOut</button>
     </form>
+    <script>document.getElementById("book-now").addEventListener("click", function(){
+      window.location.href = "/html/Booknow.html"
+    }) </script>
 </body>
 </html>

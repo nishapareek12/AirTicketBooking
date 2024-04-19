@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Booking</title>
+<link rel="stylesheet" href="../css/Booknow.css">
+<script>
+    function togglePaymentFields() {
+        var paymentMethod = document.getElementById('paymentMethod').value;
+        var cardDetails = document.getElementById('cardDetails');
+        var bankDetails = document.getElementById('bankDetails');
+
+        cardDetails.style.display = 'none';
+        bankDetails.style.display = 'none';
+
+        if (paymentMethod === 'credit_card' || paymentMethod === 'debit_card') {
+            cardDetails.style.display = 'block';
+        } else if (paymentMethod === 'bank_transfer') {
+            bankDetails.style.display = 'block';
+        }
+    }
+</script>
+</head>
+<body>
+
+<h2>Flight Booking </h2>
+
+<form action="/addPassangers" method="post">
+  
+  <!-- Passenger Details -->
+  <h3>Passenger Details</h3>
+  <label for="title">Title:</label>
+  <select id="title" name="title">
+    <option value="mr">Mr.</option>
+    <option value="mrs">Mrs.</option>
+    <option value="miss">Miss</option>
+    <!-- Add other options as needed -->
+  </select><br><br>
+  <label for="firstname">First Name:</label>
+  <input type="text" id="firstname" name="firstname"><br><br>
+  <label for="middlename">Middle Name:</label>
+  <input type="text" id="middlename" name="middlename"><br><br>
+  <label for="lastname">Last Name:</label>
+  <input type="text" id="lastname" name="lastname"><br><br>
+  <label for="age"> age:</label>
+  <input type="number" id="age" name="age"><br><br>
+  
+  <!-- Contact Details -->
+  <h3>Contact Details</h3>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone"><br><br>
+  
+  <!-- Payment Details -->
+  <h3>Payment Details</h3>
+  <label for="paymentMethod">Payment Method:</label>
+  <select id="paymentMethod" name="paymentMethod" onchange="togglePaymentFields()">
+    <option value="credit_card">Credit Card</option>
+    <option value="debit_card">Debit Card</option>
+    <option value="bank_transfer">Bank Transfer</option>
+    <option value="paypal">PayPal</option>
+  </select><br><br>
+
+  <!-- Card Details -->
+  <div id="cardDetails">
+    <label for="cardnumber">Card Number:</label>
+    <input type="text" id="cardnumber" name="cardnumber"><br><br>
+    <label for="expiry">Expiry Date:</label>
+    <input type="text" id="expiry" name="expiry" placeholder="MM/YY"><br><br>
+    <label for="cvv">CVV:</label>
+    <input type="text" id="cvv" name="cvv"><br><br>
+  </div>
+
+  <!-- Bank Details -->
+  <div id="bankDetails" style="display:none;">
+    <label for="bankname">Bank Name:</label>
+    <input type="text" id="bankname" name="bankname"><br><br>
+    <label for="accountnumber">Account Number:</label>
+    <input type="text" id="accountnumber" name="accountnumber"><br><br>
+    <label for="routingnumber">Routing Number:</label>
+    <input type="text" id="routingnumber" name="routingnumber"><br><br>
+  </div>
+  
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

@@ -8,6 +8,7 @@ app.use(cookieParser());
 const connectDb = require("./config/dbConnect")
 const {registerUser, loginUser, logoutUser} = require("./controller/userController");
 const validateToken = require("./middleware/validateToken");
+const addPassengers = require("./controller/passengersController");
 //as data is retrieved using html, we use urlencoded insted of express.json()
 connectDb()
 app.use(express.urlencoded({ extended: true }))
@@ -30,7 +31,7 @@ app.post("/searchFlight", searchFlight )
 app.get("/dashboard", validateToken, (req,res) => {
     res.sendFile(dashPath)
 })
-
+app.post("/addPassangers", addPassengers)
 app.post("/logout",logoutUser)
 // app.get("/logout", (req, res) => {
 //     res.clearCookie("token"); // Clear the token cookie
