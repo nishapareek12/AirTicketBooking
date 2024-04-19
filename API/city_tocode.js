@@ -5,7 +5,7 @@ const dotenv = require("dotenv").config()
 const api_key = process.env.FLIGHT_API_KEY
 const api_secret = process.env.FLIGHT_API_SECRET
 const base_api_url = process.env.BASE_API_URL
-const auth_token = process.env.FLIGHT_AUTH_TOKEN
+const auth_token = process.env.FLIGHT_IATA_TOKEN
 
 const IATAcode = asyncHandler(async (city) => {
     try{
@@ -19,6 +19,7 @@ const IATAcode = asyncHandler(async (city) => {
         }
               
           const response = await axios.get(api_url,{ headers })
+        //   console.log("response:  " ,response)
           const iata_code = response.data.data[0].iataCode
           return iata_code
           

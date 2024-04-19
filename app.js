@@ -15,12 +15,14 @@ connectDb()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.set('view engine', 'ejs');
-app.use(express.static("./public"))
-// app.use(express.static('public'));
-// app.use('*.css', (req, res, next) => {
-//     res.setHeader('Content-Type', 'text/css');
-//     next();
-//   });
+app.use(express.static(path.join(__dirname, 'views')))
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static("./public"))
+app.use(express.static('public'));
+app.use('*.css', (req, res, next) => {
+    res.setHeader('Content-Type', 'text/css');
+    next();
+  });
 const dashPath = path.join(__dirname, '.', 'public', 'html','dashboard.html');
 const indexPath = path.join(__dirname, '.', 'public','html','index.html')
 app.get("/", (req,res) => {
