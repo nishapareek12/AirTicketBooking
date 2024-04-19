@@ -31,10 +31,11 @@ app.get("/dashboard", validateToken, (req,res) => {
     res.sendFile(dashPath)
 })
 
-app.get("/logout", (req, res) => {
-    res.clearCookie("token"); // Clear the token cookie
-    res.redirect("/"); // Redirect to the homepage or login page
-});
+app.post("/logout",logoutUser)
+// app.get("/logout", (req, res) => {
+//     res.clearCookie("token"); // Clear the token cookie
+//     res.redirect("/"); // Redirect to the homepage or login page
+// });
 app.listen(8000, () => {
     console.log("app is listening to port 8000")
 })

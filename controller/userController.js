@@ -67,7 +67,8 @@ const loginUser = asynchandler(async (req,res) => {
 const logoutUser = asynchandler(async (req, res) => {
     // Clear the token cookie
     res.clearCookie("token");
-    res.status(200).json({ success: true, message: "Logged out successfully" });
+    res.redirect("/")
+    console.log("logged out successfully!")
 });
 
 module.exports = {registerUser, loginUser, logoutUser};

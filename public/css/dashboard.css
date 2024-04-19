@@ -60,10 +60,43 @@ main {
     cursor: pointer;
 }
 
+/* .logout-btn {
+    width: calc(16% - 10px);
+    padding: 10px 10px 10px 10px;
+    margin: 0px 0px 0px 0px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e7f0e8;
+    color: #45a049;
+    cursor: pointer;
+} */
+
+.logout-btn {
+    width: auto; /* Change width to auto to adjust according to content */
+    padding: 10px; /* Padding adjusted for spacing */
+    margin: 10px; /* Add margin for spacing */
+    position: absolute; /* Positioning absolute for flexibility */
+    top: 10px; /* Position from the top */
+    right: 10px; /* Position from the right */
+    border: none;
+    border-radius: 5px;
+    background-color: #e7f0e8; /* White */
+    color: #45a049;
+    cursor: pointer;
+}
+
+/* Adjust hover color for consistency */
+.logout-btn:hover {
+    background-color: #aeb3ae;
+}
+
 .search-btn:hover {
     background-color: #45a049; /* Darker green */
 }
 
+.logout-btn:hover {
+    background-color: #aeb3ae; 
+}
 /* Footer styles */
 footer {
     margin-top: 20px;
