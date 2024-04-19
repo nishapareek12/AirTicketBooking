@@ -5,6 +5,7 @@ const searchFlight = require("../controller/flightController")
 
 const api_key = process.env.FLIGHT_API_KEY
 const api_secret = process.env.FLIGHT_API_SECRET
+const auth_token = process.env.FLIGHT_AVAILABILITY_TOKEN
 
 const api_url = "https://test.api.amadeus.com/v1/shopping/availability/flight-availabilities"
 const fetchData = asyncHandler(async (fromCode, toCode, departure_date) => {
@@ -37,7 +38,8 @@ const headers = {
   "X-API-KEY" : api_key,
   "X-API-SECRET" : api_secret,
   // "Authorization": `Bearer nwd7aUQ3pFKjhcG3AuQl3t6tWbhz`
-  "Authorization": `Bearer 83hGuwcXex6i6AMqil2OHnBwwIzU`
+  // "Authorization": `Bearer Gbua503Q1KW13cyuCVzaLXJZMxPR`,
+  "Authorization": `Bearer ${auth_token}`
 }
 
 const response = await axios.post(api_url, requestData, { headers });
