@@ -2,6 +2,7 @@ const asynchandler = require("express-async-handler")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const myuser = require("../models/userModel")
+const validateToken = require("../middleware/validateToken")
 const registerUser = asynchandler(async(req,res) => {
    const {username, email, password} = req.body;
    if(!username || !email || !password){
@@ -52,6 +53,7 @@ const loginUser = asynchandler(async (req,res) => {
             })
             res.cookie("token",accessToken, {httpOnly: true})
             res.cookie('username', user.username, { httpOnly: false }); // Set a cookie with the username
+            
             res.redirect("/dashboard")
             // res.status(200).json({accessToken})
         }else{
@@ -61,4 +63,11 @@ const loginUser = asynchandler(async (req,res) => {
     }
 })
 
-module.exports = {registerUser, loginUser};
+
+const logoutUser = asynchandler(async (req, res) => {
+    // Clear the token cookie
+    res.clearCookie("token");
+    res.status(200).json({ success: true, message: "Logged out successfully" });
+});
+
+module.exports = {registerUser, loginUser, logoutUser};

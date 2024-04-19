@@ -37,7 +37,7 @@ const headers = {
   "X-API-KEY" : api_key,
   "X-API-SECRET" : api_secret,
   // "Authorization": `Bearer nwd7aUQ3pFKjhcG3AuQl3t6tWbhz`
-  "Authorization": `Bearer ALLM4sTC1IcyNQC7T2zopBLPREkD`
+  "Authorization": `Bearer 83hGuwcXex6i6AMqil2OHnBwwIzU`
 }
 
 const response = await axios.post(api_url, requestData, { headers });
