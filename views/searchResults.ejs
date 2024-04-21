@@ -1,43 +1,11 @@
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Search Results</title>
-<link rel="stylesheet" href="../public/css/searchResults.css">
-</head>
-<body>
-  <% if (results.length === 0) { %>
-    <p>No flights available for the given criteria.</p>
-  <% } else { %>
-    <% results.forEach(function(result) { %>
-      <div class="flight-card">
-        <h2>Flight Details</h2>
-        <div class="segments">
-          <% result.flight.forEach(function(flight, index) { %>
-            <div class="segment">
-              <p><strong>Flight Number:</strong> <%= flight.flight_number %></p>
-              <p><strong>Departure:</strong> <%= flight.from %> - <%= flight.departure_date %> at <%= flight.departure_time %></p>
-              <p><strong>Arrival:</strong> <%= flight.to %> - <%= flight.arrival_date %> at <%= flight.arrival_time %></p>
-              <% if (index < result.flight.length - 1) { %>
-                <p><em>Flight Change</em></p>
-              <% } %>
-            </div>
-          <% }); %>
-        </div>
-      </div>
-    <% }); %>
-  <% } %>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Search Results</title>
 <link rel="stylesheet" type="text/css"  href="/css/searchResults.css">
+
 </head>
 <body>
   <% if (results.length === 0) { %>
@@ -50,6 +18,7 @@
           <% result.flight.forEach(function(flight, index) { %>
             <div class="segment">
               <p><strong>Flight Number:</strong> <%= flight.flight_number %></p>
+              <p><strong>carrier code:</strong> <%= flight.carrier_code %></p>
               <p><strong>Departure:</strong> <%= flight.from %> - <%= flight.departure_date %> at <%= flight.departure_time %></p>
               <p><strong>Arrival:</strong> <%= flight.to %> - <%= flight.arrival_date %> at <%= flight.arrival_time %></p>
               <% if (index < result.flight.length - 1) { %>
@@ -69,7 +38,7 @@
     <button type="submit" class="logout-button" >LogOut</button>
     </form>
     <script>document.getElementById("book-now").addEventListener("click", function(){
-      window.location.href = "/html/Booknow.html"
+      window.location.href = "/html/passengersdata.html"
     }) </script>
 </body>
 </html>

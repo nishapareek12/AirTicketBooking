@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const passangerSchema = new mongoose.Schema({
+const passengerSchema = new mongoose.Schema({
     title : {
         type: String,
         required: [true, "title is required!"]
@@ -20,9 +20,19 @@ const passangerSchema = new mongoose.Schema({
     age: {
         type: Number,
         required: [true, "age is required!"]
+    },
+    email: {
+        type: String,
+        required: [true, "Email is required!"],
+        match: [/.+\@.+\..+/, "Please fill a valid email address"]
+    },
+    phone: {
+        type: String,
+        required: [true, "Phone number is required!"],
+        match: [/^\d{10}$/, "Please fill a valid phone number"]
     }
 },{
     timestamps: true
 })
 
-module.exports = mongoose.model("passengers", passangerSchema)
+module.exports = mongoose.model("passengers", passengerSchema)

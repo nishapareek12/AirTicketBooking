@@ -2,6 +2,7 @@ const express = require("express")
 const cookieParser = require('cookie-parser');
 const path = require("path")
 const searchFlight = require("./controller/flightController")
+// const airlineCode = require("./API/airlineCode")
 const dotenv = require("dotenv").config() //necessary to access environment variables
 const app = express()
 app.use(cookieParser());
@@ -31,7 +32,8 @@ app.post("/searchFlight", searchFlight )
 app.get("/dashboard", validateToken, (req,res) => {
     res.sendFile(dashPath)
 })
-app.post("/addPassangers", addPassengers)
+// app.get("/airlinecode",airlineCode)
+app.post("/addpassengers", addPassengers)
 app.post("/logout",logoutUser)
 // app.get("/logout", (req, res) => {
 //     res.clearCookie("token"); // Clear the token cookie

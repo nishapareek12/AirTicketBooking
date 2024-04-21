@@ -5,10 +5,11 @@ const moment = require('moment');
 const IATAcode = require("../API/city_tocode")
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config()
+const airlineCode = require("../API/airlineCode")
 
 const searchFlight = asyncHandler(async (req,res) => {
      
-    const { from, to, departure_date, passangers } = req.body;
+    const { from, to, departure_date } = req.body;
     if(!from || !to || !departure_date){
         res.status(400)
         throw new Error("please enter mandatory fields")
@@ -34,6 +35,7 @@ const searchFlight = asyncHandler(async (req,res) => {
          for(let j = 0; j < segments.length; j++){
         const extracted_data = flightdata.data[i].segments[j]
         const flightNumber = extracted_data.number
+        const carrierCode = await airlineCode(extracted_data.carrierCode)
         const departureDate = formatDate(extracted_data.departure.at)
         const departureTime = extractTime(extracted_data.departure.at)
         const arrivalDate = formatDate(extracted_data.arrival.at)
@@ -42,6 +44,7 @@ const searchFlight = asyncHandler(async (req,res) => {
         const to = extracted_data.arrival.iataCode
         segmentsArray.push({
             flight_number: flightNumber,
+            carrier_code: carrierCode,
             departure_date: departureDate,
             departure_time: departureTime,
             arrival_date: arrivalDate,
@@ -66,7 +69,7 @@ const searchFlight = asyncHandler(async (req,res) => {
         }
     }
         console.log(isLoggedIn)
-        res.render("searchResults", { results, isLoggedIn });
+        res.render("searchResults", { results, isLoggedIn});
      }catch(err){
         console.log(err)
      }

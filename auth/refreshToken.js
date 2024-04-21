@@ -18,8 +18,25 @@ const refreshToken = async (refreshToken, tokenType) => {
 
         const { access_token, refresh_token } = response.data;
         // Update the environment variables 
-        process.env[tokenType === 'availability' ? 'FLIGHT_AVAILABILITY_TOKEN' : 'FLIGHT_IATA_TOKEN'] = access_token;
-        process.env[tokenType === 'availability' ? 'FLIGHT_AVAILABILITY_REFRESH_TOKEN' : 'FLIGHT_IATA_REFRESH_TOKEN'] = refresh_token;
+        // process.env[tokenType === 'availability' ? 'FLIGHT_AVAILABILITY_TOKEN' : 'FLIGHT_IATA_TOKEN'] = access_token;
+        // process.env[tokenType === 'availability' ? 'FLIGHT_AVAILABILITY_REFRESH_TOKEN' : 'FLIGHT_IATA_REFRESH_TOKEN'] = refresh_token;
+
+        process.env[
+            tokenType === 'availability'
+              ? 'FLIGHT_AVAILABILITY_TOKEN'
+              : tokenType === 'airline'
+              ? 'FLIGHT_AIRLINE_TOKEN'
+              : 'FLIGHT_IATA_TOKEN'
+          ] = access_token;
+          
+          process.env[
+            tokenType === 'availability'
+              ? 'FLIGHT_AVAILABILITY_REFRESH_TOKEN'
+              : tokenType === 'airline'
+              ? 'FLIGHT_AIRLINE_REFRESH_TOKEN'
+              : 'FLIGHT_IATA_REFRESH_TOKEN'
+          ] = refresh_token;
+          
 
         return access_token;
     } catch (error) {
