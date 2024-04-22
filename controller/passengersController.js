@@ -1,37 +1,3 @@
-// const asynchandler = require("express-async-handler")
-// const passengers = require("../models/passengersModel")
-// const searchFlight = require("../controller/flightController")
-// const addPassengers = asynchandler(async (req,res) => {
-//     const {title, firstname, middlename, lastname,age, email, phone} = req.body;
-//     if(!title || !firstname || !middlename || !lastname || !age || !email || !phone){
-//         throw new Error("enter mandatory details")
-//     }else{
-//         const passenger = await  passengers.create({
-//             title,
-//             firstname,
-//             middlename,
-//             lastname,
-//             age,
-//             email,
-//             phone
-//         })
-//         if(passenger){
-//             res.status(201).json({
-//                 status: 1,
-//                 message: "passenger added",
-//                 data: passenger
-//             })
-//         }else{
-//             res.status(400)
-//             throw new Error("unable to add passenger")
-//         }
-//     }
-// })
-
-// module.exports = addPassengers
-
-
-
 
 const asyncHandler = require("express-async-handler");
 const Passengers = require("../models/passengersModel");
