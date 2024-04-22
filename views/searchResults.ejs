@@ -21,6 +21,8 @@
               <p><strong>carrier code:</strong> <%= flight.carrier_code %></p>
               <p><strong>Departure:</strong> <%= flight.from %> - <%= flight.departure_date %> at <%= flight.departure_time %></p>
               <p><strong>Arrival:</strong> <%= flight.to %> - <%= flight.arrival_date %> at <%= flight.arrival_time %></p>
+              <button id="avail_class" class="avail-class-button" data-avail-class='<%= JSON.stringify(flight.avail_class) %>'>Check available classes</button>
+              <div class="availability-chart"></div>
               <% if (index < result.flight.length - 1) { %>
                 <p><em>Flight Change</em></p>
               <% } %>
@@ -39,6 +41,51 @@
     </form>
     <script>document.getElementById("book-now").addEventListener("click", function(){
       window.location.href = "/html/passengersdata.html"
-    }) </script>
+    }) 
+
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    const availClassButtons = document.querySelectorAll(".avail-class-button");
+    availClassButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        const availabilityChartDiv = button.parentElement.querySelector(".availability-chart");
+        const availabilityData = JSON.parse(button.dataset.availClass);
+        availabilityChartDiv.innerHTML = ""; // Clear previous content
+        const table = document.createElement("table");
+        table.classList.add("availability-table");
+        const tbody = document.createElement("tbody");
+        const categories = {
+          "First Class": ["F", "A"],
+          "Business Class": ["C", "J", "R", "D", "I"],
+          "Premium Economy": ["W", "P"],
+          "Economy": ["Y", "H", "K", "M", "L", "G", "V", "S", "N", "Q", "O", "E"]
+        };
+        for (const category in categories) {
+          const categoryRow = document.createElement("tr");
+          const categoryHeader = document.createElement("th");
+          categoryHeader.colSpan = 2;
+          categoryHeader.textContent = category;
+          categoryRow.appendChild(categoryHeader);
+          tbody.appendChild(categoryRow);
+          categories[category].forEach(function(classCode) {
+            const row = document.createElement("tr");
+            const classCell = document.createElement("td");
+            classCell.textContent = classCode;
+            const seatsCell = document.createElement("td");
+            const seatsData = availabilityData.find(data => data.class === classCode);
+            seatsCell.textContent = seatsData ? seatsData.numberOfBookableSeats : "0";
+            row.appendChild(classCell);
+            row.appendChild(seatsCell);
+            tbody.appendChild(row);
+          });
+        }
+        table.appendChild(tbody);
+        availabilityChartDiv.appendChild(table);
+      });
+    });
+  });
+
+  
+   </script>
 </body>
 </html>

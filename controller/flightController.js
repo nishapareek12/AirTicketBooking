@@ -42,6 +42,7 @@ const searchFlight = asyncHandler(async (req,res) => {
         const arrivalTime = extractTime(extracted_data.arrival.at)
         const from  = extracted_data.departure.iataCode
         const to = extracted_data.arrival.iataCode
+        const availClass = extracted_data.availabilityClasses
         segmentsArray.push({
             flight_number: flightNumber,
             carrier_code: carrierCode,
@@ -50,7 +51,8 @@ const searchFlight = asyncHandler(async (req,res) => {
             arrival_date: arrivalDate,
             arrival_time: arrivalTime,
             from: from,
-            to: to
+            to: to,
+            avail_class: availClass
         })
     }   
       Object.assign(flightObject, { flight : segmentsArray});

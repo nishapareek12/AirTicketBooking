@@ -55,3 +55,26 @@ body {
     top: 10px;
     right: 10px;
   }
+
+  .availability-chart table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .availability-chart th,
+  .availability-chart td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .availability-chart th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .availability-chart tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
