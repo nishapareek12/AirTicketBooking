@@ -115,47 +115,117 @@
     }
 
     // Handle form submission
-    document.getElementById('bookingForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+//     document.getElementById('bookingForm').addEventListener('submit', function(event) {
+//         event.preventDefault(); // Prevent default form submission
 
-        // Clear previous passenger data
-        passengers = [];
+//         // Clear previous passenger data
+//         passengers = [];
 
-        // Loop through all passenger sections and extract data
-        var passengerSections = document.querySelectorAll('#passengerSection > div');
-        passengerSections.forEach(function(passengerDiv) {
-            var passenger = {
-                title: passengerDiv.querySelector('select[name="title"]').value,
-                firstname: passengerDiv.querySelector('input[name="firstname"]').value,
-                middlename: passengerDiv.querySelector('input[name="middlename"]').value,
-                lastname: passengerDiv.querySelector('input[name="lastname"]').value,
-                age: passengerDiv.querySelector('input[name="age"]').value,
-                email: passengerDiv.querySelector('input[name="email"]').value,
-                phone: passengerDiv.querySelector('input[name="phone"]').value
-            };
-            passengers.push(passenger);
-        });
+//         // Loop through all passenger sections and extract data
+//         var passengerSections = document.querySelectorAll('#passengerSection > div');
+//         passengerSections.forEach(function(passengerDiv) {
+//             var passenger = {
+//                 title: passengerDiv.querySelector('select[name="title"]').value,
+//                 firstname: passengerDiv.querySelector('input[name="firstname"]').value,
+//                 middlename: passengerDiv.querySelector('input[name="middlename"]').value,
+//                 lastname: passengerDiv.querySelector('input[name="lastname"]').value,
+//                 age: passengerDiv.querySelector('input[name="age"]').value,
+//                 email: passengerDiv.querySelector('input[name="email"]').value,
+//                 phone: passengerDiv.querySelector('input[name="phone"]').value
+//             };
+//             passengers.push(passenger);
+//         });
 
-        console.log("Passengers Data:", passengers);
+//         console.log("Passengers Data:", passengers);
 
-        // Send the data as JSON to the server
-        fetch('/addpassengers', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(passengers)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Handle errors
-        });
+//         // Send the data as JSON to the server
+//         // fetch('/addpassengers', {
+//         //     method: 'POST',
+//         //     headers: {
+//         //         'Content-Type': 'application/json'
+//         //     },
+//         //     body: JSON.stringify(passengers)
+//         // })
+//         // .then(response => response.json())
+//         // .then(data => {
+//         //     console.log(data);
+//         // })
+//         // .catch(error => {
+//         //     console.error('Error:', error);
+//         //     // Handle errors
+//         // });
 
+//     });
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Retrieve flight data from URL parameters
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const flightDataParam = urlParams.get('flightdata');
+//     const flightdata = JSON.parse(decodeURIComponent(flightDataParam));
+//     console.log("flight data from passengers form", flightdata)
+//     // Now you have flightdata available for use on this page
+// });
+
+// Handle form submission
+document.getElementById('bookingForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Clear previous passenger data
+    passengers = [];
+
+    // Loop through all passenger sections and extract data
+    var passengerSections = document.querySelectorAll('#passengerSection > div');
+    passengerSections.forEach(function(passengerDiv) {
+        var passenger = {
+            title: passengerDiv.querySelector('select[name="title"]').value,
+            firstname: passengerDiv.querySelector('input[name="firstname"]').value,
+            middlename: passengerDiv.querySelector('input[name="middlename"]').value,
+            lastname: passengerDiv.querySelector('input[name="lastname"]').value,
+            age: passengerDiv.querySelector('input[name="age"]').value,
+            email: passengerDiv.querySelector('input[name="email"]').value,
+            phone: passengerDiv.querySelector('input[name="phone"]').value
+        };
+        passengers.push(passenger);
     });
+
+    // Retrieve flight data from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const flightDataParam = urlParams.get('flightdata');
+    const flightdata = JSON.parse(decodeURIComponent(flightDataParam));
+
+    // Get payment method and details
+    var paymentMethod = document.getElementById('paymentMethod').value;
+    var paymentDetails = {};
+    if (paymentMethod === 'credit_card' || paymentMethod === 'debit_card') {
+        paymentDetails = {
+            paymentMethod: paymentMethod,
+            cardnumber: document.getElementById('cardnumber').value,
+            expiry: document.getElementById('expiry').value,
+            cvv: document.getElementById('cvv').value
+        };
+    } else if (paymentMethod === 'bank_transfer') {
+        paymentDetails = {
+            paymentMethod: paymentMethod,
+            bankname: document.getElementById('bankname').value,
+            accountnumber: document.getElementById('accountnumber').value,
+            routingnumber: document.getElementById('routingnumber').value
+        };
+    }
+
+    // Combine all data
+    var formData = {
+        passengers: passengers,
+        flightdata: flightdata,
+        paymentDetails: paymentDetails
+    };
+
+    // Encode data into URL parameters
+    var formDataEncoded = encodeURIComponent(JSON.stringify(formData));
+
+    // Redirect to another page with data encoded in URL parameters
+    window.location.href = '/bookingDetails?formData=' + formDataEncoded;
+});
+
 </script>
 
 </body>

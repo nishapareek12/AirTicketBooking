@@ -3,7 +3,10 @@ const asyncHandler = require("express-async-handler");
 const Passengers = require("../models/passengersModel");
 
 const addPassengers = asyncHandler(async (req, res) => {
-    const passengersData = req.body; // Expecting passengers to be an array of objects
+    const formDataEncoded = req.body.formData; // Expecting passengers to be an array of objects
+    formData = JSON.parse(decodeURIComponent(formDataEncoded))
+    const passengersData = formData.Passengers;
+    console.log(passengersData)
     // console.log(passengersData)
     if (!passengersData || passengersData.length === 0) {
         res.status(400);

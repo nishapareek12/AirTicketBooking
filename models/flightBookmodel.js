@@ -1,30 +1,35 @@
-const mongoose  = require("mongoose")
+const mongoose = require("mongoose");
 
-const flightbookSchema = new mongoose.Schema({
-   flight_details: {
-       flight_number: Number,
-       carrier_code: String,
-   } ,
-   passenger : {
-       title: String,
-       firstname: String,
-       middlename: String,
-       lastname: String,
-       age: Number
-   },
-   contact_details: {
-      email: String,
-      phone: Number  
-   },
-   payment_details: {
-      pay_pal: String
-   },
-   class: {
-      class: String
-   },
-   insurance : {
-     insurance: Boolean
-   }
-})
+// Define the booking schema
+const bookingSchema = new mongoose.Schema({
+    passengers: [{
+        title: String,
+        firstname: String,
+        middlename: String,
+        lastname: String,
+        age: Number,
+        email: String,
+        phone: String
+    }],
+    flightdata: [{
+        
+        flightNumber : Number,
+        carrierCode :String,
+        departure : String,
+        arrival : String
+    }],
+    paymentDetails: {
+        paymentMethod: String,
+        cardnumber: String,
+        expiry: String,
+        cvv: String,
+        bankname: String,
+        accountnumber: String,
+        routingnumber: String
+    }
+});
 
-module.exports = mongoose.model("flightbookmodel", flightbookSchema)
+// Create a Mongoose model for the booking schema
+module.exports = mongoose.model('Bookings', bookingSchema);
+
+

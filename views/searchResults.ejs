@@ -11,6 +11,7 @@
   <% if (results.length === 0) { %>
     <p>No flights available for the given criteria.</p>
   <% } else { %>
+    <% const flightdata = [] %>
     <% results.forEach(function(result) { %>
       <div class="flight-card">
         <h2>Flight Details</h2>
@@ -23,6 +24,13 @@
               <p><strong>Arrival:</strong> <%= flight.to %> - <%= flight.arrival_date %> at <%= flight.arrival_time %></p>
               <button id="avail_class" class="avail-class-button" data-avail-class='<%= JSON.stringify(flight.avail_class) %>'>Check available classes</button>
               <div class="availability-chart"></div>
+              <%  var flight_one = {
+                    flightNumber : flight.flight_number,
+                    carrierCode : flight.carrier_code,
+                    departure : flight.from,
+                    arrival : flight.to
+              }  %>
+               <% flightdata.push(flight_one); %>
               <% if (index < result.flight.length - 1) { %>
                 <p><em>Flight Change</em></p>
               <% } %>
@@ -30,7 +38,10 @@
           <% }); %>
         </div>
         <% if (isLoggedIn === true) { %>
-            <button id="book-now" class="book-now-button">Book Now</button>
+          <button id="book-now" class="book-now-button" data-flight-data="<%= JSON.stringify(flightdata) %>">
+          Book Now
+        </button>
+        
           <% } %>
       </div>
     <% }); %>
@@ -40,7 +51,10 @@
     <button type="submit" class="logout-button" >LogOut</button>
     </form>
     <script>document.getElementById("book-now").addEventListener("click", function(){
-      window.location.href = "/html/passengersdata.html"
+       setTimeout(function() {
+        window.location.href = "/html/passengersdata.html"
+      }, 1000); 
+      
     }) 
 
   
@@ -84,6 +98,21 @@
       });
     });
   });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // Your JavaScript code here
+    document.getElementById("book-now").addEventListener("click", function(){
+      event.preventDefault();
+        console.log("Button clicked!");
+        const flightData = JSON.parse(this.dataset.flightData);
+        console.log("flightdata: ", flightData);
+        const urlParams = new URLSearchParams();
+        urlParams.append('flightdata', JSON.stringify(flightData));
+        const queryString = urlParams.toString();
+        window.location.href = "/html/passengersdata.html?" + queryString;
+       
+      });
+});
   
    </script>
 </body>

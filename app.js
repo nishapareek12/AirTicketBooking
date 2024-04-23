@@ -2,6 +2,7 @@ const express = require("express")
 const cookieParser = require('cookie-parser');
 const path = require("path")
 const searchFlight = require("./controller/flightController")
+const bookingDetails = require("./controller/flightBookController")
 // const airlineCode = require("./API/airlineCode")
 const dotenv = require("dotenv").config() //necessary to access environment variables
 const app = express()
@@ -26,6 +27,7 @@ const indexPath = path.join(__dirname, '.', 'public','html','index.html')
 app.get("/", (req,res) => {
     res.sendFile(indexPath)
 })
+app.get("/bookingDetails", bookingDetails)
 app.post("/registerUser",registerUser)
 app.post("/loginUser", loginUser )
 app.post("/searchFlight", searchFlight )
