@@ -1,3 +1,21 @@
+
+.container {
+    width: 90%; /* Adjusted width */
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribute space between cards */
+}
+
+.flight-card {
+    width: calc(30% - 20px); /* Adjust card width as needed */
+    margin: 20px 0; /* Adjust vertical margin */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
 body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
@@ -5,40 +23,24 @@ body {
     padding: 20px;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
-
-.flight-card {
-    background: white;
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
 .flight-card h2 {
     color: #333;
     font-size: 24px;
+    margin-bottom: 10px;
 }
 
 .segments {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .segment {
     background: #eef;
     padding: 10px;
     border-radius: 5px;
-    margin-right: 10px;
+    margin-bottom: 20px;
     flex-grow: 1;
-    flex-basis: calc(50% - 10px); /* Adjust based on the number of segments expected */
-}
-
-.segment:last-child {
-    margin-right: 0;
+    flex-basis: calc(50% - 10px);
 }
 
 .segment p {
@@ -50,31 +52,70 @@ body {
     color: #333;
 }
 
+.avail-class-button, .book-now-button, .logout-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.avail-class-button {
+    background-color: #70b1c2; 
+    color: white;
+}
+
+.avail-class-button:hover {
+    background-color: #5cb3c9;
+}
+
+.book-now-button {
+    position: absolute;
+    bottom: 20px;
+    right: 18px;
+    background-color: #008CBA; /* Blue */
+    color: white;
+}
+
+.book-now-button:hover {
+    background-color: #0073e6;
+}
+
 .logout-button {
     position: absolute;
     top: 10px;
     right: 10px;
-  }
+    background-color: #f44336; /* Red */
+    color: white;
+}
 
-  .availability-chart table {
+.logout-button:hover {
+    background-color: #d32f2f;
+}
+
+.flight-card p:last-of-type {
+    margin-top: 20px;
+}
+
+.availability-chart table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-  }
-  
-  .availability-chart th,
-  .availability-chart td {
+}
+
+.availability-chart th,
+.availability-chart td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-  }
-  
-  .availability-chart th {
+}
+
+.availability-chart th {
     background-color: #f2f2f2;
     font-weight: bold;
-  }
-  
-  .availability-chart tbody tr:nth-child(even) {
+}
+
+.availability-chart tbody tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
-  
+}

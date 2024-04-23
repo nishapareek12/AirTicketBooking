@@ -4,6 +4,7 @@ const moment = require('moment');
 const IATAcode = require("../API/city_tocode")
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config()
+const fare = require("../API/fare")
 const airlineCode = require("../API/airlineCode")
 
 const searchFlight = asyncHandler(async (req,res) => {
@@ -26,11 +27,16 @@ const searchFlight = asyncHandler(async (req,res) => {
         const fromCode = await IATAcode(from);
         const toCode = await IATAcode(to);
         const flightdata = await fetchData( fromCode, toCode, departure_date)
+       
         let results = [] 
         for(let i = 0;i < flightdata.meta.count ;i++){  
             const segments = flightdata.data[i].segments
             let flightObject = {}  
             let segmentsArray = []
+         const adjustment = Math.floor(Math.random() * (2000 - (-2000) + 1)) + (-2000);  
+         const unadj_fare = await fare({ from: fromCode, to: toCode, departure: departure_date })
+         const num_unadj_fare = parseFloat(unadj_fare)
+         const flightFare = Math.floor(num_unadj_fare + adjustment)
          for(let j = 0; j < segments.length; j++){
         const extracted_data = flightdata.data[i].segments[j]
         const flightNumber = extracted_data.number
@@ -51,10 +57,11 @@ const searchFlight = asyncHandler(async (req,res) => {
             arrival_time: arrivalTime,
             from: from,
             to: to,
-            avail_class: availClass
+            avail_class: availClass,
         })
     }   
-      Object.assign(flightObject, { flight : segmentsArray});
+      
+      Object.assign(flightObject, { flight : segmentsArray, flight_fare: flightFare });
       results.push(flightObject)
        }      
      

@@ -26,6 +26,8 @@ const refreshToken = async (refreshToken, tokenType) => {
               ? 'FLIGHT_AVAILABILITY_TOKEN'
               : tokenType === 'airline'
               ? 'FLIGHT_AIRLINE_TOKEN'
+              : tokenType === 'fare' 
+              ? 'FLIGHT_FARE_TOKEN'
               : 'FLIGHT_IATA_TOKEN'
           ] = access_token;
           
@@ -34,6 +36,8 @@ const refreshToken = async (refreshToken, tokenType) => {
               ? 'FLIGHT_AVAILABILITY_REFRESH_TOKEN'
               : tokenType === 'airline'
               ? 'FLIGHT_AIRLINE_REFRESH_TOKEN'
+              : tokenType === 'fare' 
+              ? 'FLIGHT_FARE_REFRESH_TOKEN'
               : 'FLIGHT_IATA_REFRESH_TOKEN'
           ] = refresh_token;
           

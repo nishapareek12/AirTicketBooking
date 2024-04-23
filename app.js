@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const path = require("path")
 const searchFlight = require("./controller/flightController")
 const bookingDetails = require("./controller/flightBookController")
+const fare = require("./API/fare")
 // const airlineCode = require("./API/airlineCode")
 const dotenv = require("dotenv").config() //necessary to access environment variables
 const app = express()
@@ -34,6 +35,7 @@ app.post("/searchFlight", searchFlight )
 app.get("/dashboard", validateToken, (req,res) => {
     res.sendFile(dashPath)
 })
+app.get("/fare", fare)
 // app.get("/airlinecode",airlineCode)
 app.post("/addpassengers", addPassengers)
 app.post("/logout",logoutUser)
