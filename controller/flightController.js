@@ -1,6 +1,5 @@
 const fetchData = require("../API/fetchData")
 const asyncHandler = require("express-async-handler")
-const flightModel = require("../models/flightModel")
 const moment = require('moment');
 const IATAcode = require("../API/city_tocode")
 const jwt = require("jsonwebtoken");

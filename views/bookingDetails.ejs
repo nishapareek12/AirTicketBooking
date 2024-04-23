@@ -1,0 +1,54 @@
+<!-- bookingDetails.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking details</title>
+    <link rel="stylesheet" type="text/css" href="/css/bookingDetails.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">please check all the details carefully:</div>
+        <div class="card-data passenger-details">
+            <div class="card-subheader">Passenger Information:</div>
+            <% booking.passengers.forEach(passenger => { %>
+                <div class="passenger">
+                    <p>Title: <%= passenger.title %></p>
+                    <p>First Name: <%= passenger.firstname %></p>
+                    <p>Middle Name: <%= passenger.middlename %></p>
+                    <p>Last Name: <%= passenger.lastname %></p>
+                    <p>Age: <%= passenger.age %></p>
+                    <p>Email: <%= passenger.email %></p>
+                    <p>Phone: <%= passenger.phone %></p>
+                </div>
+            <% }) %>
+        </div>
+        <div class="card-data flight-data">
+            <div class="card-subheader">Flight Information:</div>
+            <% booking.flightdata.forEach(flight => { %>
+                <div class="flight">
+                    <p>Flight Number: <%= flight.flightNumber %></p>
+                    <p>Carrier Code: <%= flight.carrierCode %></p>
+                    <p>Departure: <%= flight.departure %></p>
+                    <p>Arrival: <%= flight.arrival %></p>
+                </div>
+            <% }) %>
+        </div>
+        <div class="card-data payment-details">
+            <div class="card-subheader">Payment Details:</div>
+            <div class="payment-info">
+                <p>Payment Method: <%= booking.paymentDetails.paymentMethod %></p>
+                <p>Card Number: <%= booking.paymentDetails.cardnumber %></p>
+                <p>Expiry: <%= booking.paymentDetails.expiry %></p>
+                <p>CVV: <%= booking.paymentDetails.cvv %></p>
+            </div>
+        </div>
+        <div class="book-button">
+            <p>are you sure you want to book?</p>
+            <button class="book" type="submit">Book</button>
+        </div>
+    </div>
+</body>
+</html>
