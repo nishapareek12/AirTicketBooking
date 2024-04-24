@@ -39,7 +39,8 @@ const airlineCode = asynchandler( async (al_code) => {
             throw refreshError
           }
         }else{
-            console.log("failed to load airline code")
+            // console.log("failed to load airline code")
+            return null;
         }
     }
 })

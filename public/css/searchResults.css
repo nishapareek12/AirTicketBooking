@@ -1,21 +1,37 @@
-
+/* 
 .container {
-    width: 90%; /* Adjusted width */
+    width: 90%; 
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Distribute space between cards */
-}
+    justify-content: space-between; }
 
 .flight-card {
-    width: calc(30% - 20px); /* Adjust card width as needed */
-    margin: 20px 0; /* Adjust vertical margin */
+    width: calc(30% - 20px); 
+    margin: 20px 0; 
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: relative;
+} */
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Start from the left */
 }
+
+.flight-card {
+    width: calc(30% - 20px); /* Adjust card width as needed */
+    margin: 20px 10px; /* Adjust vertical and horizontal margin */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* Remove the position: relative; */
+}
+
 body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
@@ -62,19 +78,19 @@ body {
 }
 
 .avail-class-button {
-    background-color: #70b1c2; 
+    background-color: #09a1dd; 
     color: white;
 }
 
 .avail-class-button:hover {
-    background-color: #5cb3c9;
+    background-color: #4fa0b4;
 }
 
 .book-now-button {
-    position: absolute;
-    bottom: 20px;
-    right: 18px;
-    background-color: #008CBA; /* Blue */
+    position: relative;
+    bottom: -6px;
+    right: 0px;
+    background-color: #376a7b; /* Blue */
     color: white;
 }
 

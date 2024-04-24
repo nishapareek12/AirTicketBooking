@@ -8,6 +8,7 @@
 
 </head>
 <body>
+  <div class="container">
   <% if (results.length === 0) { %>
     <p>No flights available for the given criteria.</p>
   <% } else { %>
@@ -39,42 +40,66 @@
         </div>
         <p><strong>flight fare: </strong> <%= result.flight_fare %> INR</p>
         <% if (isLoggedIn === true) { %>
-          <button class="book-now-button" data-flight-data="<%= JSON.stringify(flightdata) %>">Book Now</button>
+          <button id="book-now" class="book-now-button" data-flight-data="<%= JSON.stringify(flightdata) %>">Book Now</button>
         <% } %>
       </div>
     <% }); %>
   <% } %>
-  <div class="container">
-    <div class="flight-card">
-        <!-- Flight details for the first flight -->
-    </div>
-    <div class="flight-card">
-        <!-- Flight details for the second flight -->
-    </div>
-    <div class="flight-card">
-        <!-- Flight details for the third flight -->
-    </div>
 </div>
+
   <form action="/logout" method="post">
     <button type="submit" class="logout-button">LogOut</button>
   </form>
   
   <script>
-    document.getElementById("book-now").addEventListener("click", function(){
-       setTimeout(function() {
-        window.location.href = "/html/passengersdata.html"
-      }, 1000); 
+    // document.getElementById("book-now").addEventListener("click", function(){
+    //    setTimeout(function() {
+    //     window.location.href = "/html/passengersdata.html"
+    //   }, 1000); 
       
-    }) 
+    // }) 
 
-  
+
   document.addEventListener("DOMContentLoaded", function() {
-    const availClassButtons = document.querySelectorAll(".avail-class-button");
+    // Your JavaScript code here
+    // document.getElementById("book-now").addEventListener("click", function(){
+    //   event.preventDefault();
+    //     console.log("Button clicked!");
+    //     const flightData = JSON.parse(this.dataset.flightData);
+    //     console.log("flightdata: ", flightData);
+    //     const urlParams = new URLSearchParams();
+    //     urlParams.append('flightdata', JSON.stringify(flightData));
+    //     const queryString = urlParams.toString();
+    //     window.location.href = "/html/passengersdata.html?" + queryString;
+       
+    //   });
+
+    const bookNowButtons = document.querySelectorAll(".book-now-button");
+
+  bookNowButtons.forEach(function(button) {
+    button.addEventListener("click", function(event) {
+      event.preventDefault();
+      console.log("Button clicked!");
+      const flightData = JSON.parse(this.dataset.flightData);
+      console.log("flightdata: ", flightData);
+      const urlParams = new URLSearchParams();
+      urlParams.append('flightdata', JSON.stringify(flightData));
+      const queryString = urlParams.toString();
+      window.location.href = "/html/passengersdata.html?" + queryString;
+    });
+  });
+
+      const availClassButtons = document.querySelectorAll(".avail-class-button");
     availClassButtons.forEach(function(button) {
       button.addEventListener("click", function() {
         const availabilityChartDiv = button.parentElement.querySelector(".availability-chart");
         const availabilityData = JSON.parse(button.dataset.availClass);
-        availabilityChartDiv.innerHTML = ""; // Clear previous content
+        const isOpen = availabilityChartDiv.innerHTML.trim() !== "";
+
+        if(isOpen){
+          availabilityChartDiv.innerHTML = ""; // Clear previous content
+        }
+        else{
         const table = document.createElement("table");
         table.classList.add("availability-table");
         const tbody = document.createElement("tbody");
@@ -105,24 +130,13 @@
         }
         table.appendChild(tbody);
         availabilityChartDiv.appendChild(table);
+      }
       });
     });
-  });
-
-  document.addEventListener("DOMContentLoaded", function() {
-    // Your JavaScript code here
-    document.getElementById("book-now").addEventListener("click", function(){
-      event.preventDefault();
-        console.log("Button clicked!");
-        const flightData = JSON.parse(this.dataset.flightData);
-        console.log("flightdata: ", flightData);
-        const urlParams = new URLSearchParams();
-        urlParams.append('flightdata', JSON.stringify(flightData));
-        const queryString = urlParams.toString();
-        window.location.href = "/html/passengersdata.html?" + queryString;
-       
-      });
 });
   </script>
 </body>
 </html>
+
+
+

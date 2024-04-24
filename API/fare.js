@@ -42,7 +42,7 @@ const fare = asynchandler(async({from, to, departure}) => {
               headers.Authorization = `Bearer ${newToken}`;
 
               const retryResponse = await axios.get(api_url, {headers})
-              console.log(retryResponse.data)
+              // console.log(retryResponse.data)
               const flight_fare = retryResponse.data.data[0].priceMetrics[2].amount
               return flight_fare
 
@@ -51,7 +51,7 @@ const fare = asynchandler(async({from, to, departure}) => {
               throw refreshError
             }
           }else{
-              console.log("failed to load airline code")
+              return null;
           }
     }
 
