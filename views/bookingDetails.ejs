@@ -28,22 +28,41 @@
         <div class="card-data flight-data">
             <div class="card-subheader">Flight Information:</div>
             <% booking.flightdata.forEach(flight => { %>
+                <% if (flight && flight.flightNumber && flight.carrierCode && flight.departure && flight.arrival) { %>
                 <div class="flight">
                     <p>Flight Number: <%= flight.flightNumber %></p>
                     <p>Carrier Code: <%= flight.carrierCode %></p>
                     <p>Departure: <%= flight.departure %></p>
                     <p>Arrival: <%= flight.arrival %></p>
                 </div>
+                <% } %>
             <% }) %>
+            <div class="flightFare">
+                <p>Flight fare: <%= booking.flightFare %> INR</p>
+            </div>
         </div>
         <div class="card-data payment-details">
             <div class="card-subheader">Payment Details:</div>
+            <% if (booking.paymentDetails.paymentMethod === "upi_payment"){ %>
+                <div class="payment-info">
+                    <p>Payment Method: <%= booking.paymentDetails.paymentMethod %></p>
+                    <p>UPI ID: <%= booking.paymentDetails.upi_id %></p>
+                </div>
+            <% }else if(booking.paymentDetails.paymentMethod === "bank_transfer"){%>
+                <div class="payment-info">
+                    <p>Payment Method: <%= booking.paymentDetails.paymentMethod %></p>
+                    <p>Bank Number: <%= booking.paymentDetails.bankname %></p>
+                    <p>Account Number: <%= booking.paymentDetails.accountnumber %></p>
+                    <p>Routing Number: <%= booking.paymentDetails.routingnumber %></p>    
+                </div>
+                <% } else{ %>
             <div class="payment-info">
                 <p>Payment Method: <%= booking.paymentDetails.paymentMethod %></p>
-                <p>Card Number: <%= booking.paymentDetails.cardnumber %></p>
-                <p>Expiry: <%= booking.paymentDetails.expiry %></p>
-                <p>CVV: <%= booking.paymentDetails.cvv %></p>
+                    <p>Card Number: <%= booking.paymentDetails.cardnumber %></p>
+                    <p>Expiry: <%= booking.paymentDetails.expiry %></p>
+                    <p>CVV: <%= booking.paymentDetails.cvv %></p>
             </div>
+            <% } %>
         </div>
         <div class="book-button">
             <p>are you sure you want to book?</p>

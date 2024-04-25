@@ -12,11 +12,12 @@
   <% if (results.length === 0) { %>
     <p>No flights available for the given criteria.</p>
   <% } else { %>
-    <% const flightdata = [] %>
+    
     <% results.forEach(function(result) { %>
       <div class="flight-card">
         <h2>Flight Details</h2>
         <div class="segments">
+          <% const flightdata = [] %>
           <% result.flight.forEach(function(flight, index) { %>
             <div class="segment">
               <p><strong>Flight Number:</strong> <%= flight.flight_number %></p>
@@ -37,10 +38,12 @@
               <% } %>
             </div>
           <% }); %>
+          <!-- <% flightdata.push({flightFare: result.flight_fare}) %> -->
+          
         </div>
         <p><strong>flight fare: </strong> <%= result.flight_fare %> INR</p>
         <% if (isLoggedIn === true) { %>
-          <button id="book-now" class="book-now-button" data-flight-data="<%= JSON.stringify(flightdata) %>">Book Now</button>
+          <button id="book-now" class="book-now-button" data-flight-data="<%= JSON.stringify(flightdata) %>"  data-flight-fare="<%= result.flight_fare %>">Book Now</button>
         <% } %>
       </div>
     <% }); %>
@@ -52,27 +55,7 @@
   </form>
   
   <script>
-    // document.getElementById("book-now").addEventListener("click", function(){
-    //    setTimeout(function() {
-    //     window.location.href = "/html/passengersdata.html"
-    //   }, 1000); 
-      
-    // }) 
-
-
   document.addEventListener("DOMContentLoaded", function() {
-    // Your JavaScript code here
-    // document.getElementById("book-now").addEventListener("click", function(){
-    //   event.preventDefault();
-    //     console.log("Button clicked!");
-    //     const flightData = JSON.parse(this.dataset.flightData);
-    //     console.log("flightdata: ", flightData);
-    //     const urlParams = new URLSearchParams();
-    //     urlParams.append('flightdata', JSON.stringify(flightData));
-    //     const queryString = urlParams.toString();
-    //     window.location.href = "/html/passengersdata.html?" + queryString;
-       
-    //   });
 
     const bookNowButtons = document.querySelectorAll(".book-now-button");
 
@@ -81,9 +64,13 @@
       event.preventDefault();
       console.log("Button clicked!");
       const flightData = JSON.parse(this.dataset.flightData);
+      const flightFare = parseFloat(this.dataset.flightFare);
       console.log("flightdata: ", flightData);
+      sessionStorage.setItem("flightData", JSON.stringify(flightData))
+      sessionStorage.setItem("flightFare", flightFare);
       const urlParams = new URLSearchParams();
       urlParams.append('flightdata', JSON.stringify(flightData));
+      urlParams.append('flightFare', flightFare);
       const queryString = urlParams.toString();
       window.location.href = "/html/passengersdata.html?" + queryString;
     });
@@ -133,6 +120,12 @@
       }
       });
     });
+
+    window.addEventListener('pageshow', function(event) {
+    if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+      sessionStorage.removeItem('flightData');
+    }
+  }); 
 });
   </script>
 </body>

@@ -13,7 +13,7 @@ body {
 
 /* Header styles */
 header {
-    background-color: #4CAF50; /* Green */
+    background-color: #3ccae7; /* Green */
     color: white;
     padding: 10px;
     text-align: center;
@@ -27,8 +27,8 @@ header {
 /* Main styles */
 main {
     max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+    margin: 100px 20px 20px 286px;
+    padding: 20px 20px 20px 20px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -55,7 +55,7 @@ main {
     margin: 5px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50; /* Green */
+    background-color: #3ccae7; /* Green */
     color: white;
     cursor: pointer;
 }
@@ -81,7 +81,7 @@ main {
     border: none;
     border-radius: 5px;
     background-color: #e7f0e8; /* White */
-    color: #45a049;
+    color: #3ccae7;
     cursor: pointer;
 }
 
@@ -91,7 +91,7 @@ main {
 }
 
 .search-btn:hover {
-    background-color: #45a049; /* Darker green */
+    background-color: #3ccae7; /* Darker green */
 }
 
 .logout-btn:hover {
@@ -99,9 +99,9 @@ main {
 }
 /* Footer styles */
 footer {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #4CAF50; /* Green */
+    margin-top: 200px;
+    padding: 26px;
+    background-color: #3ccae7; /* Green */
     color: white;
     text-align: center;
 }

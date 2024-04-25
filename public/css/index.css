@@ -22,14 +22,14 @@ body {
     margin: 0 10px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50; /* Green */
+    background-color: #3ccae7; /* Green */
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .button-container button:hover {
-    background-color: #45a049; /* Darker green */
+    background-color: #3ccae7; /* Darker green */
 }
 
 /* Form styles */
@@ -55,7 +55,7 @@ form input[type="date"] {
 form input[type="text"]:focus,
 form input[type="date"]:focus {
     outline: none;
-    border-color: #4CAF50; /* Green */
+    border-color: #3ccae7; /* Green */
 }
 
 form button[type="submit"] {
@@ -63,12 +63,12 @@ form button[type="submit"] {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50; /* Green */
+    background-color: #3ccae7; /* Green */
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 form button[type="submit"]:hover {
-    background-color: #45a049; /* Darker green */
+    background-color: #3ccae7; /* Darker green */
 }

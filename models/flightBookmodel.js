@@ -16,8 +16,9 @@ const bookingSchema = new mongoose.Schema({
         flightNumber : Number,
         carrierCode :String,
         departure : String,
-        arrival : String
+        arrival : String    
     }],
+    flightFare: Number,
     paymentDetails: {
         paymentMethod: String,
         cardnumber: String,
@@ -25,7 +26,8 @@ const bookingSchema = new mongoose.Schema({
         cvv: String,
         bankname: String,
         accountnumber: String,
-        routingnumber: String
+        routingnumber: String,
+        upi_id : String
     }
 });
 

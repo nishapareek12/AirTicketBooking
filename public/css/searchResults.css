@@ -83,14 +83,14 @@ body {
 }
 
 .avail-class-button:hover {
-    background-color: #4fa0b4;
+    background-color: #31e76e;
 }
 
 .book-now-button {
     position: relative;
     bottom: -6px;
     right: 0px;
-    background-color: #376a7b; /* Blue */
+    background-color: #4ce07e; /* Blue */
     color: white;
 }
 
@@ -102,12 +102,12 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #f44336; /* Red */
+    background-color: #f0b954; /* Red */
     color: white;
 }
 
 .logout-button:hover {
-    background-color: #d32f2f;
+    background-color: rgb(231, 158, 47)
 }
 
 .flight-card p:last-of-type {
