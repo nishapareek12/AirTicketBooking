@@ -1,0 +1,41 @@
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe('your_publishable_key');
+  var elements = stripe.elements();
+  var clientSecret;
+
+  // Fetch the client secret from your server
+  fetch('/pay', {
+    method: 'POST',
+  })
+  .then(response => response.json())
+  .then(data => {
+    clientSecret = data.client_secret;
+  });
+
+  // Create an instance of the card Element
+  var card = elements.create('card');
+
+  // Add an instance of the card Element into the `card-element` div
+  card.mount('#card-element');
+
+  var form = document.getElementById('payment-form');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: card,
+      }
+    }).then(function(result) {
+      if (result.error) {
+        // Show error to your customer
+        console.error(result.error.message);
+      } else {
+        // Payment succeeded
+        console.log(result.paymentIntent);
+      }
+    });
+  });
+</script>

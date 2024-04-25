@@ -121,6 +121,24 @@
         `;
         passengerSection.appendChild(containerDiv);
     }
+//ADDING PAYMENT FUNCTIONALITY
+// Handle form submission
+document.getElementById('bookingForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); 
+
+    var stripe = Stripe(process.env.STRIPE_PUBLIC_KEY);
+    var elements = stripe.elements();
+    var card = elements.create('card');
+    card.mount('#cardnumber');
+    var { token, error } = await stripe.createToken(card);
+
+    if (error) {
+        console.error(error);
+    } else {
+        document.getElementById('token').value = token.id;
+        document.getElementById('bookingForm').submit();
+    }
+});
 
 // Handle form submission
 document.getElementById('bookingForm').addEventListener('submit', function(event) {
@@ -195,3 +213,6 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
 
 </body>
 </html>
+
+
+

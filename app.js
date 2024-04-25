@@ -1,5 +1,6 @@
 const express = require("express")
 const cookieParser = require('cookie-parser');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const path = require("path")
 const searchFlight = require("./controller/flightController")
 const bookingDetails = require("./controller/flightBookController")
@@ -39,6 +40,25 @@ app.get("/fare", fare)
 // app.get("/airlinecode",airlineCode)
 app.post("/addpassengers", addPassengers)
 app.post("/logout",logoutUser)
+app.post('/charge', async (req, res) => {
+    try {
+        const { token, amount } = req.body;
+
+        const charge = await stripe.charges.create({
+            amount: amount,
+            currency: 'INR',
+            source: token,
+            description: 'Booking payment',
+        });
+
+        // Handle successful payment
+        res.send('Payment successful');
+    } catch (error) {
+        // Handle payment failure
+        res.status(500).send('Payment failed');
+        console.log(error)
+    }
+});
 // app.get("/logout", (req, res) => {
 //     res.clearCookie("token"); // Clear the token cookie
 //     res.redirect("/"); // Redirect to the homepage or login page
